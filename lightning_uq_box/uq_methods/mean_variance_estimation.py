@@ -32,7 +32,7 @@ class MVEBase(DeterministicModel):
     def __init__(
         self,
         model: nn.Module,
-        burnin_epochs: int,
+        burnin_epochs: int,  # TODO: not used here
         freeze_backbone: bool = False,
         optimizer: OptimizerCallable = torch.optim.Adam,
         lr_scheduler: LRSchedulerCallable = None,
@@ -161,6 +161,9 @@ class MVEPxRegression(DeterministicPixelRegression):
 
     pred_dir_name = "preds"
 
+    # TODO: introduce burnin_epochs parameter as in MVERegression
+    # adressing https://github.com/lightning-uq-box/lightning-uq-box/issues/150
+    # with recommendation from Sluijterman et al. 2023 (https://arxiv.org/abs/2302.08875)
     def __init__(
         self,
         model: nn.Module,
